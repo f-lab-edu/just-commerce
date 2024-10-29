@@ -1,10 +1,8 @@
 
-rootProject.name = "toy"
+rootProject.name = "just-commerce"
 include(
-    "core",
-    // "domain-user",
-    // "domain-payment",
-    "storage:db-core"
+    "user",
+    "payment"
 )
 
 pluginManagement {
