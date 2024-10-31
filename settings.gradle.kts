@@ -2,7 +2,9 @@
 rootProject.name = "just-commerce"
 include(
     "user",
-    "payment"
+    "payment",
+    "discovery",
+    "gateway"
 )
 
 pluginManagement {
