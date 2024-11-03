@@ -1,0 +1,33 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8081/eureka
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: user
+            uri: lb://USER
+            predicates:
+              - Path=/users/**
+          - id: product
+            uri: lb://USER
+            predicates:
+              - Path=/products/**
+          - id: order
+            uri: lb://USER
+            predicates:
+              - Path=/orders/**
+          - id: payment
+            uri: lb://PAYMENT
+            predicates:
+              - Path=/payments/**
