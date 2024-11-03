@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     kotlin("jvm")
     kotlin("plugin.spring")
     kotlin("plugin.jpa")
@@ -8,6 +9,13 @@ plugins {
     id("io.spring.dependency-management")
 }
 
+application {
+    mainClass.set("com.justcommerce.UserApplication")
+}
+
+val kotestVersion: String by project
+val springCloudDependenciesVersion: String by project
+val kotestExtensionsSpring: String by project
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -19,10 +27,12 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionsSpring")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-val springCloudDependenciesVersion: String by project
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudDependenciesVersion")
