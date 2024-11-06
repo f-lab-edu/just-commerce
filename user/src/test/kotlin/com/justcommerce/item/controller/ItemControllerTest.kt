@@ -1,19 +1,23 @@
 package com.justcommerce.item.controller
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.justcommerce.item.controller.response.ItemResponse
+import com.justcommerce.item.domain.Category
+import com.justcommerce.item.domain.Price
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class ItemControllerTest (
-    private val mockMvc: MockMvc
+    private val mockMvc: MockMvc,
+    private val objectMapper: ObjectMapper
 ): DescribeSpec ({
 
     describe("item을 단건 조회하는 API는") {
@@ -21,16 +25,20 @@ class ItemControllerTest (
         context("item을 성공적으로 조회한다면") {
 
             val itemId = "C"
+            val expect = ItemResponse (
+                id = "C",
+                title = "toy",
+                categories = listOf(Category("220", "Toys & Hobbies")),
+                price = Price("150000", "KRW"),
+                sellerId = 3
+            )
             it("ItemResponse를 반환한다") {
-                mockMvc.perform(get("/items/$itemId"))
+                val actualResult = mockMvc.perform(get("/items/$itemId"))
                     .andExpect(status().isOk)
-                    .andDo(print())
-                    .andExpect(jsonPath("$.id").value("C"))
-                    .andExpect(jsonPath("$.title").value("toy"))
-                    .andExpect(jsonPath("$.categories[0].id").value("220"))
-                    .andExpect(jsonPath("$.categories[0].name").value("Toys & Hobbies"))
-                    .andExpect(jsonPath("$.price.value").value("15.99"))
-                    .andExpect(jsonPath("$.price.currency").value("KRW"))
+                    .andReturn()
+
+                val actual = objectMapper.readValue(actualResult.response.contentAsString, ItemResponse::class.java)
+                actual shouldBe expect
             }
         }
 
