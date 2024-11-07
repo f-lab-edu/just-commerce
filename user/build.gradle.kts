@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     kotlin("plugin.jpa")
+    id("org.asciidoctor.jvm.convert")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 }
@@ -13,6 +14,7 @@ application {
     mainClass.set("com.justcommerce.UserApplication")
 }
 
+val snippetsDir by extra { file("build/generated-snippets") }
 val kotestVersion: String by project
 val springCloudDependenciesVersion: String by project
 val kotestExtensionsSpring: String by project
@@ -30,6 +32,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionsSpring")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -39,8 +42,24 @@ dependencyManagement {
     }
 }
 
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
+}
+
+tasks.asciidoctor {
+    dependsOn(tasks.test)
+    inputs.dir(snippetsDir)
+}
+
 tasks.withType<Test> {
+    outputs.dir(snippetsDir)
     useJUnitPlatform()
+}
+
+tasks.build {
+    dependsOn(tasks.asciidoctor)
 }
 
 tasks.withType<KotlinCompile> {
@@ -48,12 +67,6 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "17"
     }
-}
-
-allOpen {
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.MappedSuperclass")
-    annotation("jakarta.persistence.Embeddable")
 }
 
 tasks.getByName("bootJar") {
