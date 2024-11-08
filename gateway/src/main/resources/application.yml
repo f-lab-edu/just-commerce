@@ -19,10 +19,14 @@ spring:
             uri: lb://USER
             predicates:
               - Path=/users/**
-          - id: product
+          - id: item
             uri: lb://USER
             predicates:
-              - Path=/products/**
+              - Path=/items/**
+          - id: cart
+            uri: lb://USER
+            predicates:
+              - Path=/carts/**
           - id: order
             uri: lb://USER
             predicates:
@@ -31,3 +35,12 @@ spring:
             uri: lb://PAYMENT
             predicates:
               - Path=/payments/**
+              - Path=/v2/toss/**
+          - id: checkout
+            uri: lb://PAYMENT
+            predicates:
+              - Path=/checkout/**
+          - id: wallet
+            uri: lb://PAYMENT
+            predicates:
+              - Path=/wallets/**

@@ -9,6 +9,8 @@ include(
 
 pluginManagement {
     val kotlinVersion: String by settings
+    val kotestVersion: String by settings
+    val asciidoctorJvmConvertVersion: String by settings
     val springBootVersion: String by settings
     val springDependencyManagementVersion: String by settings
 
@@ -20,6 +22,7 @@ pluginManagement {
                 "org.jetbrains.kotlin.plugin.jpa" -> useVersion(kotlinVersion)
                 "org.springframework.boot" -> useVersion(springBootVersion)
                 "io.spring.dependency-management" -> useVersion(springDependencyManagementVersion)
+                "org.asciidoctor.jvm.convert" -> useVersion(asciidoctorJvmConvertVersion)
             }
         }
     }

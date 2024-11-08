@@ -1,4 +1,4 @@
-package com.justcommerce.payment
+package com.justcommerce
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 
 @SpringBootApplication
 @EnableDiscoveryClient
-class PaymentApplication
+class UserApplication
 
 fun main(args: Array<String>) {
-    runApplication<PaymentApplication>(*args)
+    runApplication<UserApplication>(*args)
 }

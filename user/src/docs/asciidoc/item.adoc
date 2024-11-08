@@ -1,0 +1,30 @@
+// snippet 경로를 못 읽어들이는 버그로 인해 추가
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+// Ascii Doc 서식
+:doctype: article
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectlinks:
+:sectanchors:
+
+= User API
+
+== Item 조회 성공
+
+* 요청
+include::{snippets}/find-item-by-id-success/http-request.adoc[]
+* 응답
+include::{snippets}/find-item-by-id-success/http-response.adoc[]
+
+== Item 조회 실패
+
+* 요청
+include::{snippets}/find-item-by-id-fail/http-request.adoc[]
+* 응답
+include::{snippets}/find-item-by-id-fail/http-response.adoc[]
