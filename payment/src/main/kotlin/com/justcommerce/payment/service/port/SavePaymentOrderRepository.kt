@@ -4,5 +4,5 @@ import com.justcommerce.payment.domain.PaymentOrder
 
 interface SavePaymentOrderRepository {
 
-    fun save(event: PaymentOrder)
+    fun save(order: PaymentOrder): PaymentOrder
 }

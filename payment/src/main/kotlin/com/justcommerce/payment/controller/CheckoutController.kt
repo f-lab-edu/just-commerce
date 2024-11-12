@@ -26,6 +26,7 @@ class CheckoutController (
 
         model.apply {
             this.addAttribute("orderId", checkoutResult.orderId)
+            this.addAttribute("orderName", checkoutResult.orderName)
             this.addAttribute("amount", checkoutResult.amount)
             this.addAttribute("customerName", checkoutResult.customerName)
             this.addAttribute("customerEmail", checkoutResult.customerEmail)

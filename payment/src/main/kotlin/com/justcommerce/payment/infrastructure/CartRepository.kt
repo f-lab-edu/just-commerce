@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class CartRepository: FindCartRepository {
 
-    override fun getById(id: Long): Cart {
+    override fun findById(id: Long): Cart {
         TODO("Not yet implemented")
     }
 }

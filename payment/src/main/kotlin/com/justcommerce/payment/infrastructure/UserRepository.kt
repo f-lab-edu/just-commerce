@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserRepository: FindUserRepository {
 
-    override fun getById(id: Long): User {
+    override fun findById(id: Long): User {
         TODO("Not yet implemented")
     }
 }

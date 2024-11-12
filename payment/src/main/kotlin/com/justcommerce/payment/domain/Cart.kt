@@ -10,11 +10,6 @@ data class Cart (
         return items.joinToString(limit = 1, separator = "", truncated = "", postfix = " 외 ${items.size - 1}건") { it.title }
     }
 
-    /**
-     * 가격의 타입은 BigDecimal?
-     */
-    fun calcAmount() = items.sumOf { it.price.toLong() }
-
     fun toPaymentOrderItems(orderId: String) = this.items.map {
         PaymentOrderItem(
             itemId = it.id,

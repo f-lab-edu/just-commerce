@@ -6,4 +6,9 @@ data class PaymentOrder (
     val orderName: String,
     val paymentStatus: PaymentStatus,
     val items: List<PaymentOrderItem>
-)
+) {
+    /**
+     * 가격의 타입은 BigDecimal?
+     */
+    fun calcAmount() = items.sumOf { it.price }
+}

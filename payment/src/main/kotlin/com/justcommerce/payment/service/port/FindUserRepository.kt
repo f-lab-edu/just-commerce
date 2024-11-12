@@ -4,5 +4,5 @@ import com.justcommerce.payment.domain.User
 
 interface FindUserRepository {
 
-    fun getById(id: Long): User
+    fun findById(id: Long): User
 }

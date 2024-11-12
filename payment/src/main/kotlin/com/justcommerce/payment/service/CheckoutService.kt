@@ -18,11 +18,9 @@ class CheckoutService (
 ): CreateCheckoutService {
 
     override fun create(checkoutCommand: CheckoutCommand): CheckoutResult {
-        // TODO
-        // 1. 사용자 정보 조회
-        val user = findUserRepository.getById(checkoutCommand.userId)
-        // 2. 구매 물품 조회
-        val cart = findCartRepository.getById(checkoutCommand.cartId)
+        // TODO 사용자 정보, 구매 물품 조회 구현
+        val user = findUserRepository.findById(checkoutCommand.userId)
+        val cart = findCartRepository.findById(checkoutCommand.cartId)
 
         val paymentOrder = PaymentOrder(
             id = checkoutCommand.idempotencyKey,
@@ -31,12 +29,12 @@ class CheckoutService (
             paymentStatus = PaymentStatus.NOT_STARTED,
             items = cart.toPaymentOrderItems(checkoutCommand.idempotencyKey)
         )
-        // 3. (PaymentOrder 1 : PaymentOrderItem N 관계) DB 저장
-        savePaymentOrderRepository.save(paymentOrder)
+        val savedPaymentOrder = savePaymentOrderRepository.save(paymentOrder)
 
         return CheckoutResult(
-            orderId = paymentOrder.id,
-            amount = cart.calcAmount(),
+            orderId = savedPaymentOrder.id,
+            orderName = savedPaymentOrder.orderName,
+            amount = savedPaymentOrder.calcAmount(),
             customerName = user.name,
             customerEmail = user.email,
             customerMobilePhone = user.mobilePhone

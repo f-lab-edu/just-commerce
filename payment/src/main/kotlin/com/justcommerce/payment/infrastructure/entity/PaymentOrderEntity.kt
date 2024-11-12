@@ -13,17 +13,15 @@ import jakarta.persistence.Table
 class PaymentOrderEntity (
     @Id
     @Column(name = "order_id")
-    private var id: String,
+    var id: String,
 
-    @Column(name = "buyer_id")
-    private var buyerId: Long,
+    @Column(name = "buyer_id", nullable = false)
+    var buyerId: Long,
 
-    @Column(name = "order_name")
-    private var orderName: String,
+    @Column(name = "order_name", nullable = true)
+    var orderName: String,
 
-    @Column(name = "payment_status")
+    @Column(name = "payment_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private var paymentStatus: PaymentStatus
-
-
+    var paymentStatus: PaymentStatus
 )
