@@ -9,10 +9,6 @@ plugins {
     id("io.spring.dependency-management")
 }
 
-application {
-    mainClass.set("com.justcommerce.PaymentApplication")
-}
-
 val kotestVersion: String by project
 val springCloudDependenciesVersion: String by project
 val kotestExtensionsSpring: String by project
