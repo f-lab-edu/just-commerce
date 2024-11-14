@@ -1,5 +1,6 @@
 package com.justcommerce.payment.infrastructure.entity
 
+import com.justcommerce.common.infrastructure.AuditEntity
 import com.justcommerce.payment.domain.PaymentStatus
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -24,4 +25,4 @@ class PaymentOrderEntity (
     @Column(name = "payment_status", nullable = false)
     @Enumerated(EnumType.STRING)
     var paymentStatus: PaymentStatus
-)
+): AuditEntity()

@@ -1,5 +1,6 @@
 package com.justcommerce.payment.infrastructure.entity
 
+import com.justcommerce.common.infrastructure.AuditEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -30,4 +31,4 @@ class PaymentOrderItemEntity (
 
     @Column(name = "price", nullable = false)
     var price: Long
-)
+): AuditEntity()
