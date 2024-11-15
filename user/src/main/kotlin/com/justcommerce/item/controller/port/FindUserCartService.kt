@@ -2,7 +2,7 @@ package com.justcommerce.item.controller.port
 
 import com.justcommerce.item.domain.Cart
 
-interface FindCartService {
+interface FindUserCartService {
 
-    fun findById(id: Long): Cart
+    fun findCartByUserId(userId: Long): List<Cart>
 }

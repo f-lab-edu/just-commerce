@@ -28,9 +28,13 @@ class InMemoryCartRepositoryImpl: CartRepository {
         Item("C", "toy", toy, Price("150000", "KRW"), 3, LocalDateTime.now())
     )
 
-    private val carts = mapOf(1 to Cart(1, items))
+    private val carts = mapOf(1L to Cart(1L, 1L, items))
 
-    override fun getById(id: Int): Cart? {
-        return carts[id]
+    override fun getById(cartId: Long): Cart? {
+        return carts[cartId]
+    }
+
+    override fun findCartByUserId(userId: Long): List<Cart> {
+        return carts.values.filter { it.userId == userId }
     }
 }
