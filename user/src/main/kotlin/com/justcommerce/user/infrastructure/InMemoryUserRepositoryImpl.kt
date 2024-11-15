@@ -24,4 +24,8 @@ class InMemoryUserRepositoryImpl (
     override fun findById(id: Long): User? {
         return this.users[id]
     }
+
+    override fun findAll(): List<User> {
+        return users.values.toList()
+    }
 }

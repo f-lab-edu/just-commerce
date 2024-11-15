@@ -2,7 +2,7 @@ package com.justcommerce.item.controller.port
 
 import com.justcommerce.item.domain.Item
 
-interface ItemReader {
+interface FindItemService {
 
-    fun getById(id: String): Item
+    fun findById(id: String): Item
 }
