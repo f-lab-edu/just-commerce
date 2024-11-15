@@ -15,6 +15,6 @@ class CartController (
 
     @GetMapping("/{id}")
     fun getCartById(@PathVariable id: Long): CartResponse {
-        return CartResponse.from(findCartService.findById(id))
+        return CartResponse.from(findCartService.findCartById(id))
     }
 }

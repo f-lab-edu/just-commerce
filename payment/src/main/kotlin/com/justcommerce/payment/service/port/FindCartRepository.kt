@@ -4,5 +4,5 @@ import com.justcommerce.payment.domain.Cart
 
 interface FindCartRepository {
 
-    fun findById(id: Long): Cart
+    fun findCartByUserIdAndCartId(userId: Long, cartId: Long): Cart
 }

@@ -16,4 +16,12 @@ class UserCartController (
         return findUserCartService.findCartByUserId(userId)
             .map(UserCartResponse::from)
     }
+
+    @GetMapping("/{userId}/carts/{cartId}")
+    fun findUserCart(
+        @PathVariable userId: Long,
+        @PathVariable cartId: Long
+    ): UserCartResponse {
+        return UserCartResponse.from(findUserCartService.findCartByUserIdAndCartId(userId, cartId))
+    }
 }

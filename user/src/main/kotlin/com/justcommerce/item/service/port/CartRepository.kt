@@ -4,7 +4,9 @@ import com.justcommerce.item.domain.Cart
 
 interface CartRepository {
 
-    fun getById(cartId: Long): Cart?
+    fun findCartById(cartId: Long): Cart
 
     fun findCartByUserId(userId: Long): List<Cart>
+
+    fun findCartByUserIdAndCartId(userId: Long, cartId: Long): Cart
 }

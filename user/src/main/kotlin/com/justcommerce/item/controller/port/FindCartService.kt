@@ -4,5 +4,5 @@ import com.justcommerce.item.domain.Cart
 
 interface FindCartService {
 
-    fun findById(id: Long): Cart
+    fun findCartById(id: Long): Cart
 }

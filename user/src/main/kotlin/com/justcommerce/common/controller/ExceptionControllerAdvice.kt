@@ -1,5 +1,7 @@
 package com.justcommerce.common.controller
 
+import com.justcommerce.common.domain.exception.CartNotFoundException
+import com.justcommerce.common.domain.exception.CartOwnerMismatchException
 import com.justcommerce.common.domain.exception.ItemNotFoundException
 import com.justcommerce.common.domain.exception.UserNotFoundException
 import org.springframework.core.Ordered
@@ -16,6 +18,6 @@ class ExceptionControllerAdvice {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(UserNotFoundException::class, ItemNotFoundException::class)
+    @ExceptionHandler(UserNotFoundException::class, ItemNotFoundException::class, CartNotFoundException::class, CartOwnerMismatchException::class)
     fun resourceNotFoundException(e: RuntimeException) = e.message
 }

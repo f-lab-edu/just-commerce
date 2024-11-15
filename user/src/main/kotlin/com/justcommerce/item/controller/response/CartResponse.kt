@@ -4,13 +4,13 @@ import com.justcommerce.item.domain.Cart
 import com.justcommerce.item.domain.Item
 
 data class CartResponse (
-    val id: Int,
+    val id: Long,
     val items: List<Item>
 ) {
     companion object {
         fun from(cart: Cart): CartResponse {
             return CartResponse(
-                cart.id,
+                cart.cartId,
                 cart.items
             )
         }

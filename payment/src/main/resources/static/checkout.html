@@ -45,7 +45,7 @@
         const userId = params.get('userId');
         const cartId = params.get('cartId');
 
-        const checkoutResponse = createCheckout(userId, cartId)
+        const checkoutResponse = await createCheckout(userId, cartId)
 
         const button = document.getElementById("payment-button");
         const coupon = document.getElementById("coupon-box");

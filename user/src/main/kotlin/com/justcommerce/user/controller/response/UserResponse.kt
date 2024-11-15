@@ -6,6 +6,8 @@ import java.time.LocalDateTime
 data class UserResponse(
     val id: Long,
     val name: String,
+    val email: String,
+    val mobilePhone: String,
     val createdAt: LocalDateTime
 ) {
 
@@ -14,6 +16,8 @@ data class UserResponse(
             return UserResponse(
                 user.id,
                 user.name,
+                user.email,
+                user.mobilePhone,
                 user.createdAt
             )
         }

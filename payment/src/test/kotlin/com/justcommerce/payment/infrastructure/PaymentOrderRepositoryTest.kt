@@ -1,10 +1,10 @@
 package com.justcommerce.payment.infrastructure
 
-import com.justcommerce.payment.domain.Item
 import com.justcommerce.payment.domain.PaymentOrder
 import com.justcommerce.payment.domain.PaymentOrderItem
 import com.justcommerce.payment.domain.PaymentStatus
-import com.justcommerce.payment.service.port.SavePaymentOrderRepository
+import com.justcommerce.payment.infrastructure.jpa.PaymentOrderItemJpaRepository
+import com.justcommerce.payment.infrastructure.jpa.PaymentOrderJpaRepository
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.extensions.spring.SpringTestExtension
 import io.kotest.extensions.spring.SpringTestLifecycleMode

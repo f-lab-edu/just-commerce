@@ -18,9 +18,8 @@ class CheckoutService (
 ): CreateCheckoutService {
 
     override fun create(checkoutCommand: CheckoutCommand): CheckoutResult {
-        // TODO 사용자 정보, 구매 물품 조회 구현
-        val user = findUserRepository.findById(checkoutCommand.userId)
-        val cart = findCartRepository.findById(checkoutCommand.cartId)
+        val user = findUserRepository.findUserById(checkoutCommand.userId)
+        val cart = findCartRepository.findCartByUserIdAndCartId(checkoutCommand.userId, checkoutCommand.cartId)
 
         val paymentOrder = PaymentOrder(
             id = checkoutCommand.idempotencyKey,

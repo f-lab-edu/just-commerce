@@ -2,6 +2,8 @@ package com.justcommerce.payment.infrastructure
 
 import com.justcommerce.payment.domain.PaymentOrder
 import com.justcommerce.payment.infrastructure.entity.PaymentOrderItemEntity
+import com.justcommerce.payment.infrastructure.jpa.PaymentOrderItemJpaRepository
+import com.justcommerce.payment.infrastructure.jpa.PaymentOrderJpaRepository
 import com.justcommerce.payment.infrastructure.mapper.toDomain
 import com.justcommerce.payment.infrastructure.mapper.toEntity
 import com.justcommerce.payment.service.port.SavePaymentOrderRepository

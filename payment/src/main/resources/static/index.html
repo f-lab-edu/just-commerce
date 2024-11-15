@@ -62,7 +62,7 @@
     // Fetch carts for a selected user and populate the cart select box
     async function fetchUserCarts(userId) {
         try {
-            const response = await fetch(GATEWAY_URL + `/users/${userId}/carts`);
+            const response = await fetch(GATEWAY_URL + `/${userId}/carts`);
             const carts = await response.json();
 
             const cartSelect = document.getElementById('cartSelect');
@@ -80,8 +80,8 @@
             cartSelect.addEventListener('change', function() {
                 const checkoutButton = document.getElementById('checkoutButton');
                 checkoutButton.disabled = !cartSelect.value;
+                fetchCartItems(cartSelect.value)
             });
-
         } catch (error) {
             console.error('Error fetching carts:', error);
         }

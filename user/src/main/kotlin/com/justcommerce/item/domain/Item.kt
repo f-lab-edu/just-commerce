@@ -6,7 +6,7 @@ class Item (
     val id: String,
     val title: String,
     val categories: List<Category>,
-    val price: Price,
+    val price: Long,
     val sellerId: Long,
     val createdAt: LocalDateTime
 )
