@@ -44,3 +44,7 @@ spring:
             uri: lb://PAYMENT
             predicates:
               - Path=/wallets/**
+          - id: main
+            uri: lb://PAYMENT
+            predicates:
+              - Path=/*

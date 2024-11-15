@@ -39,30 +39,28 @@
 </div>
 <script>
     main();
-
+    const GATEWAY_URL = 'http://localhost:8080';
     async function main() {
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get('userId');
+        const cartId = params.get('cartId');
+
+        const checkoutResponse = createCheckout(userId, cartId)
+
         const button = document.getElementById("payment-button");
         const coupon = document.getElementById("coupon-box");
 
-        /*<![CDATA[*/
-        const orderId = "[[${orderId}]]"
-        const orderName = "[[${orderName}]]"
-        const customerName = "[[${customerName}]]"
-        const customerEmail = "[[${customerEmail}]]"
-        const customerMobilePhone = "[[${customerEmail}]]"
-        var value = [[${amount}]]
-        /*]]>*/
+        const orderId = checkoutResponse.orderId
+        const orderName = checkoutResponse.orderName
+        const customerName = checkoutResponse.customerName
+        const customerEmail = checkoutResponse.customerEmail
+        const customerMobilePhone = checkoutResponse.customerMobilePhone
+        const value = checkoutResponse.amount
 
         const amount = {
             currency: "KRW",
             value: value,
         };
-
-        console.log(amount)
-        console.log(orderId)
-        console.log(orderName)
-        console.log(customerEmail)
-        console.log(customerMobilePhone)
 
         // ------  결제위젯 초기화 ------
         // TODO: clientKey는 개발자센터의 결제위젯 연동 키 > 클라이언트 키로 바꾸세요.
@@ -129,8 +127,8 @@
             await widgets.requestPayment({
                 orderId: orderId,
                 orderName: orderName,
-                successUrl: window.location.origin + "/widget/success.html",
-                failUrl: window.location.origin + "/widget/fail.html",
+                successUrl: window.location.origin + "/success.html",
+                failUrl: window.location.origin + "/fail.html",
                 customerEmail: customerEmail,
                 customerName: customerName,
                 customerMobilePhone: customerMobilePhone,
@@ -145,6 +143,36 @@
     document.getElementById("brandpay-button").addEventListener("click", () => {
         location.href = "/brandpay/checkout.html";
     });
+
+    async function createCheckout(userId, cartId) {
+        const requestData = {
+            userId: userId,
+            cartId: cartId
+        };
+
+        try {
+            const response = await fetch("/checkout", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            // 응답 확인
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json()
+            console.log('Checkout created successfully:', responseData);
+            return responseData;
+
+        } catch (error) {
+            console.error('Error creating checkout:', error);
+        }
+    }
+
 </script>
 </body>
 </html>
