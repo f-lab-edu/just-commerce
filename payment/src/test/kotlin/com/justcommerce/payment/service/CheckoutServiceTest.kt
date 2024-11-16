@@ -2,17 +2,19 @@ package com.justcommerce.payment.service
 
 import com.justcommerce.payment.controller.port.CheckoutCommand
 import com.justcommerce.payment.controller.port.CheckoutResult
-import com.justcommerce.payment.mock.FindCartMockRepository
-import com.justcommerce.payment.mock.FindUserMockRepository
+import com.justcommerce.payment.infrastructure.CartRepository
+import com.justcommerce.payment.infrastructure.UserRepository
+import com.justcommerce.payment.mock.MockUserServiceClient
 import com.justcommerce.payment.mock.SavePaymentOrderMockRepository
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
 class CheckoutServiceTest : DescribeSpec ({
 
+    val mockClient = MockUserServiceClient()
     val checkoutService = CheckoutService(
-        FindCartMockRepository(),
-        FindUserMockRepository(),
+        CartRepository(mockClient),
+        UserRepository(mockClient),
         SavePaymentOrderMockRepository()
     )
 
