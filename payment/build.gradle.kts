@@ -9,16 +9,13 @@ plugins {
     id("io.spring.dependency-management")
 }
 
-// application {
-//     mainClass.set("com.justcommerce.PaymentApplication")
-// }
-
 val kotestVersion: String by project
 val springCloudDependenciesVersion: String by project
 val kotestExtensionsSpring: String by project
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

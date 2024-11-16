@@ -74,7 +74,7 @@
         })
         .catch((err) => {
             // TODO: 결제 승인에 실패했을 경우 UI 처리 로직을 구현하세요.
-            window.location.href = `/widget/fail.html?message=${err.message}&code=${err.code}`;
+            window.location.href = `/fail.html?message=${err.message}&code=${err.code}`;
         });
 
     const paymentKeyElement = document.getElementById("paymentKey");
