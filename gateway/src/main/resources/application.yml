@@ -8,6 +8,7 @@ eureka:
 server:
   port: 8080
 
+
 spring:
   application:
     name: gateway
@@ -15,36 +16,27 @@ spring:
     gateway:
       mvc:
         routes:
-          - id: user
-            uri: lb://USER
+          - id: item-service
+            uri: lb://ITEM-SERVICE
             predicates:
-              - Path=/users/**
-          - id: item
-            uri: lb://USER
+            - Path=/items/**,/carts/**,/{userId}/carts/**
+          - id: user-service
+            uri: lb://USER-SERVICE
             predicates:
-              - Path=/items/**
-          - id: cart
-            uri: lb://USER
+            - Path=/users/**
+          - id: payment-service
+            uri: lb://PAYMENT-SERVICE
             predicates:
-              - Path=/carts/**,/{userId}/carts
-          - id: order
-            uri: lb://USER
+            - Path=/orders/**,/payments/**,/v2/toss/**,/checkout
+          - id: wallet-service
+            uri: lb://PAYMENT-SERVICE
             predicates:
-              - Path=/orders/**
-          - id: payment
-            uri: lb://PAYMENT
-            predicates:
-              - Path=/payments/**
-              - Path=/v2/toss/**
-          - id: checkout
-            uri: lb://PAYMENT
-            predicates:
-              - Path=/checkout/**
-          - id: wallet
-            uri: lb://PAYMENT
-            predicates:
-              - Path=/wallets/**
+            - Path=/wallets/**
           - id: main
-            uri: lb://PAYMENT
+            uri: lb://PAYMENT-SERVICE
             predicates:
-              - Path=/*
+            - Path=/*
+logging:
+  level:
+    org.springframework.cloud.gateway: trace
+    reactor.netty: trace
