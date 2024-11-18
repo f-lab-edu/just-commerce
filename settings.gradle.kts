@@ -3,6 +3,7 @@ rootProject.name = "just-commerce"
 include(
     "discovery",
     "gateway",
+    "common",
     "user-service",
     "payment-service",
     "item-service",

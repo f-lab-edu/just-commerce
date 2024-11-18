@@ -11,7 +11,4 @@ class TestConfig {
 
     @Bean
     fun clockHolder(): ClockHolder = TestClockHolder(LocalDateTime.now())
-
-    @Bean
-    fun mockMvcEncodingCustomizer(): MockMvcBuilderCustomizer = MockMvcEncodingCustomizer()
 }

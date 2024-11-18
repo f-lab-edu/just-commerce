@@ -1,13 +1,16 @@
 package com.justcommerce.item.infrastructure
 
+import com.justcommerce.item.infrastructure.exception.ItemNotFoundException
+import com.justcommerce.common.holder.ClockHolder
 import com.justcommerce.item.service.domain.Category
 import com.justcommerce.item.service.domain.Item
 import com.justcommerce.item.service.port.ItemRepository
 import org.springframework.stereotype.Repository
-import java.time.LocalDateTime
 
 @Repository
-class InMemoryItemRepositoryImpl: ItemRepository {
+class InMemoryItemRepositoryImpl (
+    clockHolder: ClockHolder
+): ItemRepository {
 
     private val camera = listOf(
         Category("179697", "Camera Drones"),
@@ -21,12 +24,12 @@ class InMemoryItemRepositoryImpl: ItemRepository {
     private val toy = listOf(Category("220", "Toys & Hobbies"),)
 
     private val items = mapOf(
-        "A" to Item("A", "camera", camera, 100000, 1, LocalDateTime.now()),
-        "B" to Item("B", "rcVehicle", rcVehicle, 150000, 2, LocalDateTime.now()),
-        "C" to Item("C", "toy", toy, 30000, 3, LocalDateTime.now())
+        "A" to Item("A", "camera", camera, 100000, 1, clockHolder.now()),
+        "B" to Item("B", "rcVehicle", rcVehicle, 150000, 2, clockHolder.now().minusDays(1)),
+        "C" to Item("C", "toy", toy, 30000, 3, clockHolder.now().minusDays(2))
     )
 
-    override fun getById(id: String): Item? {
-        return items[id]
+    override fun getById(id: String): Item {
+        return items[id] ?: throw ItemNotFoundException(id)
     }
 }

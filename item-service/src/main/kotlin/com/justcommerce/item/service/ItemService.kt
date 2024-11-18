@@ -1,6 +1,5 @@
 package com.justcommerce.item.service
 
-import com.justcommerce.common.domain.exception.ItemNotFoundException
 import com.justcommerce.item.controller.port.FindItemService
 import com.justcommerce.item.service.domain.Item
 import com.justcommerce.item.service.port.ItemRepository
@@ -12,6 +11,6 @@ class ItemService(
 ): FindItemService {
 
     override fun findById(id: String): Item {
-        return itemRepository.getById(id) ?: throw ItemNotFoundException(id)
+        return itemRepository.getById(id)
     }
 }
