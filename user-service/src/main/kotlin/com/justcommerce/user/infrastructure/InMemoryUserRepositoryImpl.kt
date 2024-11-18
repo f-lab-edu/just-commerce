@@ -1,12 +1,9 @@
 package com.justcommerce.user.infrastructure
 
-import com.justcommerce.common.domain.ClockHolder
+import com.justcommerce.common.holder.ClockHolder
 import com.justcommerce.user.service.domain.User
 import com.justcommerce.user.service.port.UserRepository
 import org.springframework.stereotype.Repository
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 @Repository
 class InMemoryUserRepositoryImpl (
