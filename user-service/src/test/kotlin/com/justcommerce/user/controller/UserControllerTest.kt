@@ -1,8 +1,8 @@
 package com.justcommerce.user.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.justcommerce.common.domain.ClockHolder
 import com.justcommerce.common.domain.exception.UserNotFoundException
+import com.justcommerce.common.holder.ClockHolder
 import com.justcommerce.config.TestConfig
 import com.justcommerce.user.controller.port.FindUserService
 import com.justcommerce.user.controller.response.UserResponse
@@ -80,7 +80,7 @@ class UserControllerTest (
                     mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}", id))
                         .andExpect(MockMvcResultMatchers.status().isNotFound)
                         .andExpect(MockMvcResultMatchers.content().string("사용자를 찾을 수 없습니다. [$id]"))
-                        .andDo(document("find-user-by-id-fail"))
+                        .andDo(document("find-user-by-id-not-found"))
                 }
             }
         }

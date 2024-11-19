@@ -8,4 +8,9 @@ plugins {
 
 dependencies {
     compileOnly("org.springframework.boot:spring-boot-starter-web")
+    compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
+}
+
+allOpen {
+    annotation("jakarta.persistence.MappedSuperclass")
 }

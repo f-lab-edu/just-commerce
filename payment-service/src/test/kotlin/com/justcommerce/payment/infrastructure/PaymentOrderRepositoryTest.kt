@@ -21,7 +21,6 @@ class PaymentOrderRepositoryTest (
         paymentOrderJpaRepository,
         paymentOrderItemJpaRepository
     )
-    extensions(SpringTestExtension(SpringTestLifecycleMode.Test))
 
     describe("save 메서드는") {
 
