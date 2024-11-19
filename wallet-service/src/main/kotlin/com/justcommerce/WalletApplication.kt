@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 @EnableDiscoveryClient
 @EnableJpaAuditing
 @EnableFeignClients
-class PaymentApplication
+class WalletApplication
 
 fun main(args: Array<String>) {
-    runApplication<PaymentApplication>(*args)
+    runApplication<WalletApplication>(*args)
 }
