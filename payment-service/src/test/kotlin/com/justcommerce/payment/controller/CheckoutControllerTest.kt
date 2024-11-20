@@ -82,7 +82,7 @@ class CheckoutControllerTest: DescribeSpec () {
                         .andReturn()
                     val actual = objectMapper.readValue(actualResult.response.contentAsString, ErrorResponse::class.java)
                     val expect = ErrorResponse(ErrorCode.INVALID_INPUT_VALUE, listOf(
-                        FieldError(field="cartId", value="0", reason="must be greater than or equal to 1")
+                        FieldError(field="cartId", value="0", reason="1 이상의 값을 입력하세요.")
                     ))
                     actual shouldBe expect
                 }
