@@ -1,7 +1,8 @@
 package com.justcommerce.user.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.justcommerce.common.domain.exception.UserNotFoundException
+import com.justcommerce.common.error.ErrorResponse
+import com.justcommerce.user.infrastructure.exception.UserNotFoundException
 import com.justcommerce.common.holder.ClockHolder
 import com.justcommerce.config.TestConfig
 import com.justcommerce.user.controller.port.FindUserService
@@ -77,10 +78,18 @@ class UserControllerTest (
                 val id = 4L
                 given(findUserService.findById(id)).willThrow(UserNotFoundException(id))
                 it("자원을 찾지 못 했다는 메시지와 함께 404 응답 코드를 반환한다.") {
-                    mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}", id))
+                    val actualResult = mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}", id))
                         .andExpect(MockMvcResultMatchers.status().isNotFound)
-                        .andExpect(MockMvcResultMatchers.content().string("사용자를 찾을 수 없습니다. [$id]"))
                         .andDo(document("find-user-by-id-not-found"))
+                        .andReturn()
+
+                    val actual = objectMapper.readValue(actualResult.response.contentAsString, ErrorResponse::class.java)
+                    val expect = ErrorResponse (
+                        message = "사용자를 찾을 수 없습니다. [$id]",
+                        errors = emptyList(),
+                        code = "C003"
+                    )
+                    actual shouldBe expect
                 }
             }
         }

@@ -1,6 +1,5 @@
 package com.justcommerce.user.service
 
-import com.justcommerce.common.domain.exception.UserNotFoundException
 import com.justcommerce.user.controller.port.FindUserService
 import com.justcommerce.user.service.domain.User
 import com.justcommerce.user.service.port.UserRepository
@@ -12,7 +11,7 @@ class UserService(
 ): FindUserService {
 
     override fun findById(id: Long): User {
-        return userRepository.findById(id) ?: throw UserNotFoundException(id)
+        return userRepository.findById(id)
     }
 
     override fun findAll(): List<User> {
