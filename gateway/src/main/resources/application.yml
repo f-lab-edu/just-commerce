@@ -27,7 +27,7 @@ spring:
           - id: payment-service
             uri: lb://PAYMENT-SERVICE
             predicates:
-            - Path=/orders/**,/payments/**,/v2/toss/**,/checkout
+            - Path=/orders/**,/payments/**,/confirm/**,/checkout
           - id: wallet-service
             uri: lb://PAYMENT-SERVICE
             predicates:

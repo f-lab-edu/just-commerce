@@ -1,4 +1,4 @@
-package com.justcommerce.payment.infrastructure.webclient
+package com.justcommerce.payment.infrastructure.client
 
 import feign.Response
 import feign.codec.ErrorDecoder

@@ -7,14 +7,14 @@ import com.justcommerce.payment.service.domain.PaymentOrder
 import com.justcommerce.payment.service.domain.PaymentStatus
 import com.justcommerce.payment.service.port.FindCartRepository
 import com.justcommerce.payment.service.port.FindUserRepository
-import com.justcommerce.payment.service.port.SavePaymentOrderRepository
+import com.justcommerce.payment.service.port.CommandPaymentOrderRepository
 import org.springframework.stereotype.Service
 
 @Service
 class CheckoutService (
     private val findCartRepository: FindCartRepository,
     private val findUserRepository: FindUserRepository,
-    private val savePaymentOrderRepository: SavePaymentOrderRepository
+    private val commandPaymentOrderRepository: CommandPaymentOrderRepository
 ): CreateCheckoutService {
 
     override fun create(checkoutCommand: CheckoutCommand): CheckoutResult {
@@ -28,7 +28,7 @@ class CheckoutService (
             paymentStatus = PaymentStatus.NOT_STARTED,
             items = cart.toPaymentOrderItems(checkoutCommand.idempotencyKey)
         )
-        val savedPaymentOrder = savePaymentOrderRepository.save(paymentOrder)
+        val savedPaymentOrder = commandPaymentOrderRepository.save(paymentOrder)
 
         return CheckoutResult(
             orderId = savedPaymentOrder.id,

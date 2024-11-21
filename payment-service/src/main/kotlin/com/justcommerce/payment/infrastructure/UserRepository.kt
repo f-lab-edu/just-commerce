@@ -1,7 +1,7 @@
 package com.justcommerce.payment.infrastructure
 
 import com.justcommerce.payment.service.domain.User
-import com.justcommerce.payment.infrastructure.webclient.UserServiceClient
+import com.justcommerce.payment.infrastructure.client.UserServiceClient
 import com.justcommerce.payment.service.port.FindUserRepository
 import org.springframework.stereotype.Repository
 

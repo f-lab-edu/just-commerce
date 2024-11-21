@@ -1,6 +1,5 @@
-package com.justcommerce.payment.infrastructure.webclient
+package com.justcommerce.payment.infrastructure.client
 
-import com.justcommerce.payment.service.domain.Cart
 import com.justcommerce.payment.service.domain.User
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping

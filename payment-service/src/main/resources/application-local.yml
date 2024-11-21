@@ -18,4 +18,4 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
 logging:
   level:
-    com.justcommerce.payment.infrastructure.webclient: DEBUG
+    com.justcommerce.payment.infrastructure.client: DEBUG

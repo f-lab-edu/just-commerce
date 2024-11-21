@@ -37,7 +37,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException::class)
     fun resourceNotFoundException(e: BusinessException): ResponseEntity<ErrorResponse> {
         val errorCode = e.errorCode
-        val response = ErrorResponse.of(ErrorCode.ENTITY_NOT_FOUND, e.message ?: errorCode.message)
+        val response = ErrorResponse.of(errorCode, e.message ?: errorCode.message)
         return ResponseEntity(response, HttpStatus.valueOf(errorCode.status))
     }
 
