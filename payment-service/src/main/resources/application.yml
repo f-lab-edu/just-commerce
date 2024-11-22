@@ -18,3 +18,9 @@ spring:
   config:
     import:
       - logging.yml
+
+PG:
+  toss:
+    url: https://api.tosspayments.com
+    secretKey: test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6
+    confirm: /v1/payments/confirm
