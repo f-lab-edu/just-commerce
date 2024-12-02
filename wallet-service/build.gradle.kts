@@ -16,6 +16,7 @@ val springCloudDependenciesVersion: String by project
 val kotestExtensionsSpring: String by project
 val mockitoKotlinVersion: String by project
 dependencies {
+    implementation(project(":common"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")

@@ -1,6 +1,6 @@
 package com.justcommerce.config
 
-import com.justcommerce.common.domain.ClockHolder
+import com.justcommerce.common.holder.ClockHolder
 import java.time.LocalDateTime
 
 class TestClockHolder (

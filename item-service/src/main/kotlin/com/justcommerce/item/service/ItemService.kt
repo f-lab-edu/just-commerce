@@ -11,6 +11,6 @@ class ItemService(
 ): FindItemService {
 
     override fun findById(id: String): Item {
-        return itemRepository.getById(id)
+        return itemRepository.getItemById(id)
     }
 }

@@ -4,13 +4,11 @@ import com.justcommerce.payment.controller.port.CheckoutResult
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.exchange
 import org.springframework.http.HttpMethod
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.RequestEntity
 import org.springframework.transaction.annotation.Transactional
 import java.net.URI

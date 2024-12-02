@@ -4,5 +4,5 @@ import com.justcommerce.item.service.domain.Item
 
 interface ItemRepository {
 
-    fun getById(id: String): Item?
+    fun getItemById(id: String): Item
 }

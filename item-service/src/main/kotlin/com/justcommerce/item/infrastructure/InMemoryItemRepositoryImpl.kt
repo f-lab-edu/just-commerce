@@ -29,7 +29,7 @@ class InMemoryItemRepositoryImpl (
         "C" to Item("C", "toy", toy, 30000, 3, clockHolder.now().minusDays(2))
     )
 
-    override fun getById(id: String): Item {
+    override fun getItemById(id: String): Item {
         return items[id] ?: throw ItemNotFoundException(id)
     }
 }

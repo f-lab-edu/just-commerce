@@ -1,9 +1,10 @@
 package com.justcommerce.payment.controller
 
-import com.justcommerce.payment.controller.port.CheckoutCommand
 import com.justcommerce.payment.controller.port.CheckoutResult
+import com.justcommerce.payment.controller.request.CreateCheckoutRequest
 import com.justcommerce.payment.controller.port.CreateCheckoutService
-import org.springframework.web.bind.annotation.GetMapping
+import com.justcommerce.payment.controller.port.CheckoutCommand
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,11 +16,12 @@ class CheckoutController (
     private val createCheckoutService: CreateCheckoutService
 ) {
 
-    @GetMapping("/hello")
-    fun test(): String = "hello"
-
     @PostMapping
-    fun checkout(@RequestBody checkoutCommand: CheckoutCommand): CheckoutResult {
+    fun checkout(@RequestBody @Validated createCheckoutRequest: CreateCheckoutRequest): CheckoutResult {
+        val checkoutCommand = CheckoutCommand(
+            createCheckoutRequest.userId,
+            createCheckoutRequest.cartId
+        )
         return createCheckoutService.create(checkoutCommand)
     }
 }

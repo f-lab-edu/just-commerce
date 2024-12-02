@@ -1,6 +1,7 @@
 package com.justcommerce.user.infrastructure
 
 import com.justcommerce.common.holder.ClockHolder
+import com.justcommerce.user.infrastructure.exception.UserNotFoundException
 import com.justcommerce.user.service.domain.User
 import com.justcommerce.user.service.port.UserRepository
 import org.springframework.stereotype.Repository
@@ -18,8 +19,8 @@ class InMemoryUserRepositoryImpl (
         3L to User(3L, "테스트3", "서울", "c@gmail.com", "01011112224", registerTime.minusDays(3))
     )
 
-    override fun findById(id: Long): User? {
-        return this.users[id]
+    override fun findById(id: Long): User {
+        return this.users[id] ?: throw UserNotFoundException(id)
     }
 
     override fun findAll(): List<User> {

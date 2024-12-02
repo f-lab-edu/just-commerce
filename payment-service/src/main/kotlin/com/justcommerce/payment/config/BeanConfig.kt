@@ -8,5 +8,5 @@ import org.springframework.context.annotation.Configuration
 class BeanConfig {
 
     @Bean
-    fun feignLogger() = Logger.Level.BASIC
+    fun feignLogger() = Logger.Level.HEADERS
 }
